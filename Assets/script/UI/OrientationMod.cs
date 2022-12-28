@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Orientation : MonoBehaviour
+public class OrientationMod : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject CanvasPortait;
@@ -18,11 +18,25 @@ public class Orientation : MonoBehaviour
     {
         if (Time.timeScale == 1f)
         {
-            Screen.autorotateToPortrait = false;
+            if (ManageUI.CurMod == ManageUI.Mod.Walk)
+            {
+                Screen.autorotateToPortrait = false;
+            }
+            else
+            {
+                Screen.autorotateToLandscapeLeft = false;
+                Screen.autorotateToLandscapeRight = false;
+            }
+            
             return;
         }
 
+       
         Screen.autorotateToPortrait = true;
+        Screen.autorotateToLandscapeLeft = true;
+        Screen.autorotateToLandscapeRight = true;
+        
+
         switch (Screen.orientation)
         {
             case ScreenOrientation.Portrait:
